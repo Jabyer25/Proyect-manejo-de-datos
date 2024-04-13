@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #b3ae60;}
+.s1 { color: #6aab73;}
+.s2 { color: #bcbec4;}
+.s3 { color: #cf8e6d;}
+.s4 { color: #bcbec4;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">#include</span><span class="s1">&lt;iostream&gt;</span>
+<span class="s0">#include</span><span class="s1">&lt;stdio.h&gt;</span>
+<span class="s0">#include</span><span class="s1">&lt;stdlib.h&gt;</span>
+<span class="s0">#include</span><span class="s1">&lt;fstream&gt;</span>
+<span class="s0">#include</span><span class="s1">&lt;cstdlib&gt;</span>
+<span class="s3">using namespace </span><span class="s2">std</span><span class="s4">;</span>
+
+<span class="s3">char </span><span class="s2">nombre</span><span class="s4">[</span><span class="s5">250</span><span class="s4">];</span>
+<span class="s2">string nombreArchivo</span><span class="s4">;</span>
+<span class="s2">string frase</span><span class="s4">;</span>
+<span class="s2">ofstream archivo</span><span class="s4">;</span>
+
+<span class="s3">void </span><span class="s2">indentificador</span><span class="s4">(){</span>
+    <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;Digite el nombre del archivo: &quot;</span><span class="s4">;</span>
+    <span class="s2">cin</span><span class="s4">&gt;&gt;</span><span class="s2">nombre</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s3">int </span><span class="s2">opcion</span><span class="s4">;</span>
+
+<span class="s3">void </span><span class="s2">escribir</span><span class="s4">(){</span>
+
+    <span class="s3">char </span><span class="s2">band</span><span class="s4">;</span>
+    <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;Digite el nombre del archivo: &quot;</span><span class="s4">;</span>
+    <span class="s2">cin</span><span class="s4">&gt;&gt;</span><span class="s2">nombreArchivo</span><span class="s4">;</span>
+    <span class="s2">archivo</span><span class="s4">.</span><span class="s2">open</span><span class="s4">(</span><span class="s2">nombreArchivo</span><span class="s4">.</span><span class="s2">c_str</span><span class="s4">(),</span><span class="s2">ios</span><span class="s4">::</span><span class="s2">app</span><span class="s4">);</span>
+
+    <span class="s3">if</span><span class="s4">(</span><span class="s2">archivo</span><span class="s4">.</span><span class="s2">fail</span><span class="s4">()){</span>
+        <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;No se pudo abrir el archivo&quot;</span><span class="s4">;</span>
+        <span class="s2">exit</span><span class="s4">(</span><span class="s5">1</span><span class="s4">);</span>
+    <span class="s4">}</span>
+
+    <span class="s3">do</span><span class="s4">{</span>
+        <span class="s2">fflush</span><span class="s4">(</span><span class="s2">stdin</span><span class="s4">);</span>
+
+        <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;</span><span class="s3">\n</span><span class="s1">Digite el texto del archivo: &quot;</span><span class="s4">;</span>
+        <span class="s2">getline</span><span class="s4">(</span><span class="s2">cin</span><span class="s4">,</span><span class="s2">frase</span><span class="s4">);</span>
+
+        <span class="s2">archivo</span><span class="s4">&lt;&lt;</span><span class="s2">frase</span><span class="s4">&lt;&lt;</span><span class="s2">endl</span><span class="s4">;</span>
+
+        <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;</span><span class="s3">\n</span><span class="s1">Desea agregar mas texto al archivo? (s/n)&quot;</span><span class="s4">;</span>
+        <span class="s2">cin</span><span class="s4">&gt;&gt;</span><span class="s2">band</span><span class="s4">;</span>
+    <span class="s4">}</span><span class="s3">while</span><span class="s4">((</span><span class="s2">band </span><span class="s4">== </span><span class="s1">'s'</span><span class="s4">) || (</span><span class="s2">band </span><span class="s4">== </span><span class="s1">'S'</span><span class="s4">));</span>
+
+    <span class="s2">archivo</span><span class="s4">.</span><span class="s2">close</span><span class="s4">();</span>
+
+    <span class="s4">}</span>
+
+    <span class="s3">void </span><span class="s2">comprimir</span><span class="s4">(){</span>
+        <span class="s2">indentificador</span><span class="s4">();</span>
+        <span class="s2">sprintf</span><span class="s4">(</span><span class="s2">nombre</span><span class="s4">, </span><span class="s1">&quot;7z a COMPRIMIDO.7Z&quot;</span><span class="s4">, </span><span class="s2">nombre</span><span class="s4">);</span>
+        <span class="s2">system</span><span class="s4">(</span><span class="s2">nombre</span><span class="s4">);</span>
+<span class="s4">}</span>
+
+<span class="s3">void </span><span class="s2">eliminar</span><span class="s4">(){</span>
+    <span class="s2">indentificador</span><span class="s4">();</span>
+    <span class="s2">remove</span><span class="s4">(</span><span class="s2">nombre</span><span class="s4">);</span>
+<span class="s4">}</span>
+
+<span class="s3">int </span><span class="s2">main</span><span class="s4">(){</span>
+    <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;Opcion 1 abrir un archivo y agregarle texto</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s4">;</span>
+    <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;Opcion 2 comprimir archivo</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s4">;</span>
+    <span class="s2">cout</span><span class="s4">&lt;&lt;</span><span class="s1">&quot;Opcion 3 eliminar archivo</span><span class="s3">\n</span><span class="s1">&quot;</span><span class="s4">;</span>
+    <span class="s2">cin</span><span class="s4">&gt;&gt;</span><span class="s2">opcion</span><span class="s4">;</span>
+
+    <span class="s3">switch </span><span class="s4">(</span><span class="s2">opcion</span><span class="s4">) {</span>
+        <span class="s3">case </span><span class="s5">1</span><span class="s4">:</span>
+            <span class="s2">escribir</span><span class="s4">();</span>
+            <span class="s3">break</span><span class="s4">;</span>
+        <span class="s3">case </span><span class="s5">2</span><span class="s4">:</span>
+            <span class="s2">comprimir</span><span class="s4">();</span>
+            <span class="s3">break</span><span class="s4">;</span>
+        <span class="s3">case </span><span class="s5">3</span><span class="s4">:</span>
+            <span class="s2">eliminar</span><span class="s4">();</span>
+            <span class="s3">break</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+<span class="s4">}</span></pre>
+</body>
+</html>
